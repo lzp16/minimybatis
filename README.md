@@ -9,7 +9,7 @@
 ##### 2).构建使用框架源码工程的极简用例工程用于调试 使用框架的用例工程越简单越容易发现框架的核心  可以参考我的usemybatis工程，该工程没有使用源码工程需要改造
 ##### 3).准备好框架文档  mybatis的官方文档：https://mybatis.org/mybatis-3/zh/index.html
 ##### 4).想要阅读源码少走弯路的话则最好做到上边的准备
-### 3、.构建使用框架源码工程的用例工程
+### 3、如何构建使用框架源码工程的用例工程
 ## Mybatis核心原理
 ### 1、mybatis流程
 ![](https://github.com/lzp16/minimybatis/blob/master/src/main/resources/images/mybatis-process.png)
