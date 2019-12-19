@@ -29,5 +29,5 @@
 ##### 4).SQL Mapper（映射器）:MyBatis 新设计存在的组件，它由一个 Java 接口和 XML 文件（或注解）构成，需要给出对应的 SQL 和映射规则。它负责发送 SQL 去执行，并返回结果。
 ##### 5).Configuration（配置）：参数处理，结果集处理，SQL与mapper对照关系，数据库连接信息等等进行配置化
 ##### 6).executor：用于操作底层的jdbc（如释放数据库连接），被sqlsession持有
-## 相关文档
-* http://c.biancheng.net/mybatis/
+### 3、相关文档
+##### http://c.biancheng.net/mybatis/
