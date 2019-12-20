@@ -25,10 +25,6 @@ public class XPathParser {
     private XPath xPath;
     private final Document document;
 
-    public XPath getxPath() {
-        return xPath;
-    }
-
     public Document getDocument() {
         return document;
     }
@@ -79,6 +75,7 @@ public class XPathParser {
 
                 @Override
                 public void warning(SAXParseException exception) throws SAXException {
+                    throw exception;
                 }
             });
             return builder.parse(inputSource);
