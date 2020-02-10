@@ -2,7 +2,7 @@ package com.lzp.mybatis.executor;
 
 import com.lzp.mybatis.mapping.MapperStatement;
 import com.lzp.mybatis.mapping.MyConfiguration;
-import com.lzp.mybatis.parse.SqlTokenParser;
+import com.lzp.mybatis.parsing.SqlTokenParser;
 import com.lzp.mybatis.pool.MyDataSource;
 import com.lzp.mybatis.reflection.ReflectionUtil;
 

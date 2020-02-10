@@ -1,5 +1,6 @@
-package com.lzp.mybatis.parse;
+package com.lzp.mybatis.parsing;
 
+import com.lzp.mybatis.io.MyResources;
 import com.lzp.mybatis.mapping.MapperStatement;
 import com.lzp.mybatis.mapping.MyConfiguration;
 import com.lzp.mybatis.mapping.MyEnvironment;
@@ -9,26 +10,25 @@ import org.w3c.dom.NodeList;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 /**
  * Created by LiZhanPing on 2019/12/17.
  */
-public class XmlConfigBuilder {
+public class MyXmlConfigBuilder {
 
-    private XPathParser xPathParser;
+    private MyXPathParser myXPathParser;
 
-    public XmlConfigBuilder(InputStream inputStream){
-        this.xPathParser = new XPathParser(inputStream);
+    public MyXmlConfigBuilder(InputStream inputStream){
+        this.myXPathParser = new MyXPathParser(inputStream);
     }
 
     public MyConfiguration parse(){
 
         //环境信息
         Properties properties = new Properties();
-        Node dataSourceNode = xPathParser.evalNode("/configuration/environments/environment/dataSource");
+        Node dataSourceNode = myXPathParser.evalNode("/configuration/environment/dataSource");
         NodeList propertyNodeList = dataSourceNode.getChildNodes();
         for (int i=0;i<propertyNodeList.getLength();i++){
             Node propertyNode = propertyNodeList.item(i);
@@ -39,7 +39,7 @@ public class XmlConfigBuilder {
 
         //Mapper映射文件配置信息
         Map<String,MapperStatement> mapperStatementMap = new HashMap<String, MapperStatement>();
-        Node mappersNode = xPathParser.evalNode("/configuration/mappers");
+        Node mappersNode = myXPathParser.evalNode("/configuration/mappers");
         NodeList mapperNodeList = mappersNode.getChildNodes();
         for(int i=0;i<mapperNodeList.getLength();i++){
             Node mapperNode = mapperNodeList.item(i);
@@ -47,9 +47,9 @@ public class XmlConfigBuilder {
                 //mapper.xml文件的位置
                 String resource = mapperNode.getAttributes().getNamedItem("resource").getNodeValue();
                 //解析该mapper.xml文件
-                InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(resource);
-                this.xPathParser = new XPathParser(inputStream);
-                Element element = this.xPathParser.getDocument().getDocumentElement();
+                InputStream inputStream = MyResources.getResourceAsStream(resource);
+                this.myXPathParser = new MyXPathParser(inputStream);
+                Element element = this.myXPathParser.getDocument().getDocumentElement();
                 String namespace = element.getAttribute("namespace");
 
                 NodeList sqlNodeList = element.getChildNodes();

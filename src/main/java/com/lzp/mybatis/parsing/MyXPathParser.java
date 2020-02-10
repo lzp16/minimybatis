@@ -1,12 +1,8 @@
-package com.lzp.mybatis.parse;
+package com.lzp.mybatis.parsing;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
+import org.xml.sax.*;
 
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
@@ -15,21 +11,21 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by LiZhanPing on 2019/12/17.
  */
-public class XPathParser {
-    private XPath xPath;
+public class MyXPathParser {
+
     private final Document document;
+
+    private XPath xPath;
 
     public Document getDocument() {
         return document;
     }
 
-    public XPathParser(InputStream inputStream) {
+    public MyXPathParser(InputStream inputStream) {
         this.xPath = createXpath();
         this.document = createDocument(new InputSource(inputStream));
     }
@@ -45,8 +41,8 @@ public class XPathParser {
         try {
             //这个是DOM解析方式
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-//            factory.setValidating(validation);
-
+            //是否对xml文档做校验
+            factory.setValidating(true);
             //名称空间
             factory.setNamespaceAware(false);
             //忽略注释
@@ -60,8 +56,8 @@ public class XPathParser {
 
             DocumentBuilder builder = factory.newDocumentBuilder();
             //需要注意的就是定义了EntityResolver(XMLMapperEntityResolver)，这样不用联网去获取DTD，
-            //将DTD放在org\apache\ibatis\builder\xml\mybatis-3-config.dtd,来达到验证xml合法性的目的
-//            builder.setEntityResolver(entityResolver);
+            //将DTD放在org\apache\ibatis\builder\xml\mybatis-1.0-config.dtd,来达到验证xml合法性的目的
+            builder.setEntityResolver(new MyXMLEntityResolver());
             builder.setErrorHandler(new ErrorHandler() {
                 @Override
                 public void error(SAXParseException exception) throws SAXException {

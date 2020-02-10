@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Roey
+-->
+<!ELEMENT configuration (environment?, mappers?)>
+
+<!ELEMENT environments (environment+)>
+<!ATTLIST environments
+default CDATA #REQUIRED
+>
+
+<!ELEMENT environment (dataSource+)>
+<!ATTLIST environment
+default CDATA #REQUIRED
+>
+
+<!ELEMENT dataSource (property*)>
+<!ATTLIST dataSource
+id CDATA #REQUIRED
+>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+name CDATA #REQUIRED
+value CDATA #REQUIRED
+>
+
+<!ELEMENT mappers (mapper*)>
+
+<!ELEMENT mapper EMPTY>
+<!ATTLIST mapper
+resource CDATA #IMPLIED
+>

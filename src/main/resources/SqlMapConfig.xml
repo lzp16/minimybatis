@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        SYSTEM
+        "minimybatis\src\main\java\com\lzp\mybatis\parsing\mybatis-1.0-config.dtd">
 <configuration>
-    <environments default="development">
-        <environment id="development">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/test"/>
-                <property name="username" value=""/>
-                <property name="password" value=""/>
-            </dataSource>
-        </environment>
-    </environments>
+    <environment default="dev">
+        <dataSource id="dev">
+            <property name="driver" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://localhost:3306/minimybatis"/>
+            <property name="username" value=""/>
+            <property name="password" value=""/>
+        </dataSource>
+    </environment>
     <mappers>
         <mapper resource="com/lzp/dao/UserMapper.xml"/>
     </mappers>

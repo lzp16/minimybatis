@@ -1,4 +1,4 @@
-package com.lzp.mybatis.parse;
+package com.lzp.mybatis.parsing;
 
 /**
  * Created by LiZhanPing on 2019/12/19.
