@@ -6,6 +6,7 @@ import com.lzp.mybatis.parsing.MyXmlConfigBuilder;
 import java.io.InputStream;
 
 /**
+ * 使用了建造者模式
  * Created by LiZhanPing on 2019/12/17.
  */
 public class MySqlSessionFactoryBuilder {

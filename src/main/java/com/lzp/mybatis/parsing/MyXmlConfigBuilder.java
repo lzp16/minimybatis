@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
+ * 使用了构造者模式
  * Created by LiZhanPing on 2019/12/17.
  */
 public class MyXmlConfigBuilder {

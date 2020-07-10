@@ -4,7 +4,7 @@ import com.lzp.mybatis.session.MySqlSession;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -19,8 +19,10 @@ public class MapperProxy implements InvocationHandler {
     }
 
     /**
-     * 在invoke方法中实现mapper接口的增删改查的动作，其本质就是调用MyExcutor执行sql语句
-     * 而MyExcutor可以通过MySqlSession进行调用，sql语句就需要根据包名+类名+方法名在MyConfiguration中进行定位
+     * 找到sql，通过jdbc执行sql语句，并返回结果
+     * 使用代理模式对mapper中方法进行代理，从而实现方法中的逻辑，具体的代理逻辑在mapperproxy类的invoke方法中。
+     * 代理逻辑：根据包名+类名+方法名在MyConfiguration中找到对应的sql语句，然后调用MyExcutor执行sql语句，最后通过TypeHandler将结果封装
+     *
      * @param proxy
      * @param method
      * @param args
@@ -32,7 +34,7 @@ public class MapperProxy implements InvocationHandler {
         //根据包名+类名+方法名生成mapperStatementKey以定位sql语句
         String mapperStatementKey = method.getDeclaringClass().getName() + "." + method.getName();
         Class<?> clazz = method.getReturnType();
-        if (Collections.class.isAssignableFrom(clazz)) {
+        if (Collection.class.isAssignableFrom(clazz)) {
             mySqlSession.selectList(mapperStatementKey, args[0]);
         } else if (Map.class.isAssignableFrom(clazz)) {
             mySqlSession.selectMap(mapperStatementKey, args[0]);

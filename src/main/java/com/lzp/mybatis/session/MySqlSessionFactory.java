@@ -4,6 +4,7 @@ import com.lzp.mybatis.executor.MyExecutor;
 import com.lzp.mybatis.mapping.MyConfiguration;
 
 /**
+ * 使用了工厂模式
  * Created by LiZhanPing on 2019/12/17.
  */
 public class MySqlSessionFactory {

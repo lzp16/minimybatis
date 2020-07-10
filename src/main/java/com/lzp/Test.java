@@ -19,6 +19,37 @@ import java.net.Socket;
  */
 public class Test {
 
+
+    /**
+     * 1、Builder模式，例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder；
+     * 作用：将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。
+     *
+     * 2、工厂模式，例如SqlSessionFactory、ObjectFactory、MapperProxyFactory；
+     * 作用：在简单工厂模式中，可以根据参数的不同返回不同类的实例。简单工厂模式专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有共同的父类。
+     *
+     * 3、单例模式，例如ErrorContext和LogFactory；
+     * 作用：单例模式确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。
+     *
+     * 4、代理模式，Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果；
+     * 作用：代理模式可以认为是Mybatis的核心使用的模式，正是由于这个模式，我们只需要编写Mapper.java接口，不需要实现，由Mybatis后台帮我们完成具体SQL的执行。
+     *
+     * 5、组合模式，例如SqlNode和各个子类ChooseSqlNode等；
+     * 意图：将对象组合成树形结构以表示"部分-整体"的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。
+     * 主要解决：它在我们树型结构的问题中，模糊了简单元素和复杂元素的概念，客户程序可以像处理简单元素一样来处理复杂元素，从而使得客户程序与复杂元素的内部结构解耦。
+     * 在使用组合模式时，其叶子和树枝的声明都是实现类，而不是接口，违反了依赖倒置原则。
+     *
+     * 6、模板方法模式，例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler；
+     * 作用:模板类定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+     *
+     * 7、适配器模式，例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现；
+     * 作用：将一个接口转换成客户希望的另一个接口，适配器模式使接口不兼容的那些类可以一起工作，其别名为包装器(Wrapper)。
+     *
+     * 8、装饰者模式，例如Cache包中的cache.decorators子包中等各个装饰者的实现；
+     * 作用：动态地给一个对象增加一些额外的职责(Responsibility)，就增加对象功能来说，装饰模式比生成子类实现更为灵活。
+     *
+     * 9、迭代器模式，例如迭代器模式PropertyTokenizer；
+     * 作用:提供一种方法访问一个容器（container）对象中各个元素，而又不需暴露该对象的内部细节。
+     */
     public static void main(String[] args) throws IOException {
         //1、读取SqlMapConfig.xml配置文件,实现方式是将文件转换成流
         InputStream inputStream = MyResources.getResourceAsStream("SqlMapConfig.xml");

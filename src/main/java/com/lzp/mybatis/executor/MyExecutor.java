@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 使用了模板模式
  * Created by LiZhanPing on 2019/12/18.
  */
 public class MyExecutor {
